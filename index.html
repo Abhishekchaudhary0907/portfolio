@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abhishek Kumar | Portfolio</title>
+    <style>
+      /* Reset & Dark Theme */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #0d0d0d;
+        color: #e6e6e6;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      header {
+        text-align: center;
+        padding: 60px 20px;
+        animation: fadeIn 1.5s ease-in-out;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        color: #fff;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        color: #aaa;
+      }
+
+      nav {
+        text-align: center;
+        padding: 15px;
+        background: #111;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav a {
+        color: #e6e6e6;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #1da1f2;
+      }
+
+      section {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 60px 20px;
+        border-bottom: 1px solid #222;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-in-out, transform 0.3s ease,
+          box-shadow 0.3s ease;
+        border-radius: 10px;
+      }
+
+      section.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Hover effect */
+      section:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 8px 20px rgba(81, 88, 92, 0.2);
+      }
+
+      section h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #1da1f2;
+      }
+
+      /* Skills Progress Bars */
+      .skill {
+        margin: 15px 0;
+      }
+
+      .skill-name {
+        margin-bottom: 5px;
+      }
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .skill-btn {
+        background: #111;
+        color: #fff;
+        border: 2px solid #1da1f2;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-btn:hover {
+        background: #1da1f2;
+        color: #111;
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 0 15px rgba(29, 161, 242, 0.7);
+      }
+
+      .progress {
+        width: 100%;
+        background: #222;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 12px;
+        width: 0;
+        background: #1da1f2;
+        border-radius: 20px;
+        transition: width 2s ease;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 30px 20px;
+        background: #111;
+      }
+
+      footer a {
+        margin: 0 10px;
+        color: #1da1f2;
+        text-decoration: none;
+      }
+
+      /* Progress Scroll Bar */
+      #progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 5px;
+        background: #1da1f2;
+        z-index: 2000;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.2rem;
+        }
+        section {
+          padding: 40px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav a {
+          margin: 0 8px;
+          font-size: 0.9rem;
+        }
+        header p {
+          font-size: 1rem;
+        }
+      }
+
+      ul {
+        list-style: none;
+      }
+      ul li {
+        margin: 10px 0;
+        padding-left: 35px;
+        position: relative;
+      }
+      ul li::before {
+        position: absolute;
+        left: 0;
+        background: linear-gradient(45deg, #00f2fe, #4facfe);
+        color: white;
+        font-weight: bold;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header -->
+    <header>
+      <h1>Abhishek Kumar</h1>
+      <p>Full Stack Web Developer | MERN Stack | Building Scalable Apps</p>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+      <a href="#about">ABOUT</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#education">EDUCATION</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate Full Stack Developer specializing in building modern,
+        scalable, and secure web applications. Experienced in Node.js, React.js,
+        MongoDB, and cloud deployments, I love solving real-world problems with
+        clean code.
+      </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-container">
+        <button class="skill-btn">JavaScript</button>
+        <button class="skill-btn">Node.js</button>
+        <button class="skill-btn">React.js</button>
+        <button class="skill-btn">MongoDB</button>
+        <button class="skill-btn">HTML5</button>
+        <button class="skill-btn">CSS3</button>
+        <button class="skill-btn">Spring Boot</button>
+        <button class="skill-btn">Git & GitHub</button>
+        <button class="skill-btn">Nginx</button>
+        <button class="skill-btn">Docker</button>
+        <button class="skill-btn">CI/CD</button>
+        <button class="skill-btn">oAth2.0</button>
+        <button class="skill-btn">JWT</button>
+        <button class="skill-btn">Postgres</button>
+        <button class="skill-btn">Mongoose ORM</button>
+        <button class="skill-btn">Sequelize ORM</button>
+        <button class="skill-btn">Redis</button>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li>
+          <strong>Mock Test Web App</strong> – A MERN stack application with
+          authentication, payments (Razorpay), Redis caching, and deployment
+          with CI/CD pipelines.
+        </li>
+        <li>
+          <strong>Portfolio Website</strong> – Responsive personal portfolio
+          showcasing skills and projects.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <strong>B.Tech in Computer Science & Technology</strong> – KIET Group
+          of Institutions, Ghaziabad
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Email:
+        <a href="mailto:abhishek.abskch@gmail.com">abhishek.abskch@gmail.com</a>
+      </p>
+      <p>Phone: +91 9565205121</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <a href="https://github.com/Abhishekchaudhary0907" target="_blank"
+        >GitHub</a
+      >
+      |
+      <a
+        href="https://www.linkedin.com/in/abhishek-kumar-chaudhary1921/"
+        target="_blank"
+        >LinkedIn</a
+      >
+      <p>&copy; 2025 Abhishek Kumar</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Scroll Progress Bar
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        document.getElementById("progress-bar").style.width = progress + "%";
+      });
+
+      // Reveal sections on scroll
+      const sections = document.querySelectorAll("section");
+      window.addEventListener("scroll", () => {
+        const trigger = window.innerHeight / 1.2;
+        sections.forEach((sec) => {
+          const top = sec.getBoundingClientRect().top;
+          if (top < trigger) {
+            sec.classList.add("show");
+          }
+        });
+      });
+
+      // Animate Skill Bars
+      const skillBars = document.querySelectorAll(".progress-bar");
+      window.addEventListener("scroll", () => {
+        skillBars.forEach((bar) => {
+          const rect = bar.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 50) {
+            bar.style.width = bar.dataset.skill + "%";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
